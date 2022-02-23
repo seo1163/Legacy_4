@@ -7,43 +7,44 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BankBookService {
-	// Controller -> Service -> DAO
-	// DAO로 데이터를 보내기전에 전처리 작업
-	// DAO에서 리턴받은 데이터를 Controller로 보내기전 후처리 작업
-
+	//Controller -> Service -> DAO
+	//DAO로 데이터를 보내기전에 전처리 작업
+	//DAO에서 리턴받은 데이터를 Controller로 보내기전 후처리 작업
+	
 	@Autowired
 	private BankBookDAO bankBookDAO;
-
-	// Update
-	public int update(BankBookDTO bankBookDTO) throws Exception {
+	
+	//Update
+	public int update(BankBookDTO bankBookDTO)throws Exception{
 		return bankBookDAO.update(bankBookDTO);
 	}
-
-	// 메서드는 DAO의 메서드와 거의 동일
-	// delete
-	public int delete(BankBookDTO bankBookDTO) throws Exception {
+	
+	//메서드는 DAO의 메서드와 거의 동일
+	//delete
+	public int delete (BankBookDTO bankBookDTO)throws Exception{
 		return bankBookDAO.delete(bankBookDTO);
 	}
-
-	// add
-	public int add(BankBookDTO bankBookDTO) throws Exception {
+	
+	//add
+	public int add(BankBookDTO bankBookDTO)throws Exception{
 		return bankBookDAO.add(bankBookDTO);
 	}
-
-	// detail
-	public BankBookDTO detail(BankBookDTO bankBookDTO) throws Exception {
-
+	
+	
+	//detail
+	public BankBookDTO detail(BankBookDTO bankBookDTO)throws Exception{
+		
 		return bankBookDAO.detail(bankBookDTO);
 	}
-
-	// list
-	public List<BankBookDTO> list() throws Exception {
-
-		// DAO 메서 호출 전 전처리 작업
-		// 호출 후 후처리 작업
+	
+	//list
+	public List<BankBookDTO> list()throws Exception{
+		
+		//DAO 메서 호출 전 전처리 작업
+		//호출 후 후처리 작업
 		List<BankBookDTO> ar = bankBookDAO.list();
-
+		
 		return ar;
-	}
+	} 
 
 }

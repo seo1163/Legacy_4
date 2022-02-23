@@ -6,13 +6,13 @@
 <mapper namespace="com.iu.s1.notice.NoticeDAO">
 
 	<insert id="add" parameterType="NoticeDTO">
-		insert into notice (num, writer, title, contents, regDate, hit)
-		values (notice_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0)
+		insert into notice (noticenum, writer, title, contents, regDate, hit)
+		values (notice_seq.nextval, #{writer}, #{title}, #{contents}, SYSDATE, 0)
 	</insert>
 
 	<select id="detail" parameterType="NoticeDTO"
 		resultType="NoticeDTO">
-		select * from notice where num=#{num}
+		select * from notice where noticenum=#{noticenum}
 	</select>
 
 	<select id="list" resultType="NoticeDTO">
