@@ -14,60 +14,60 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/bankbook/*")
 public class BankBookController {
-
+	
 	@Autowired
 	private BankBookService bankBookService;
-
-	// update
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(BankBookDTO bankBookDTO) throws Exception {
+	
+	//update
+	@RequestMapping(value = "update", method=RequestMethod.POST)
+	public String update(BankBookDTO bankBookDTO)throws Exception{
 		int result = bankBookService.update(bankBookDTO);
 		return "redirect: ./list";
 	}
-
-	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public void update(BankBookDTO bankBookDTO, Model model) throws Exception {
+	
+	@RequestMapping(value = "update", method=RequestMethod.GET)
+	public void update(BankBookDTO bankBookDTO, Model model)throws Exception{
 		System.out.println(bankBookDTO.getBookNumber());
-
+		
 		bankBookDTO = bankBookService.detail(bankBookDTO);
 		model.addAttribute("dto", bankBookDTO);
 	}
-
+	
 	@RequestMapping("delete")
-	public String delete(BankBookDTO bankBookDTO) throws Exception {
+	public String delete(BankBookDTO bankBookDTO)throws Exception{
 		int result = bankBookService.delete(bankBookDTO);
-
+		
 		return "redirect:./list";
 	}
-
-	// DB에 insert
-	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(BankBookDTO bankBookDTO) throws Exception {
+	
+	//DB에 insert
+	@RequestMapping(value = "add", method=RequestMethod.POST)
+	public String add(BankBookDTO bankBookDTO)throws Exception{
 		int result = bankBookService.add(bankBookDTO);
-
+		
 		return "redirect:./list";
 	}
-
-	// insert form 이동
-	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public void add() throws Exception {
-
+	
+	//insert form 이동
+	@RequestMapping(value = "add", method=RequestMethod.GET)
+	public void add()throws Exception{
+		
 	}
-
-	// detail
+	
+	//detail
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public void detail(BankBookDTO bankBookDTO, Model model) throws Exception {
+	public void detail(BankBookDTO bankBookDTO, Model model)throws Exception{
 		bankBookDTO = bankBookService.detail(bankBookDTO);
 		model.addAttribute("dto", bankBookDTO);
 	}
-
-	// list
+	
+	//list
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView list(ModelAndView mv) throws Exception {
-		// ModelAndView
-		// 매개변수 선언
-		// 메서드내에서 객체 생성
-		// ModelAndView modelAndView = new ModelAndView();
+	public ModelAndView list(ModelAndView mv)throws Exception{
+		//ModelAndView
+		//매개변수 선언
+		//메서드내에서 객체 생성
+		//ModelAndView modelAndView = new ModelAndView();
 		List<BankBookDTO> ar = bankBookService.list();
 		mv.addObject("list", ar);
 		mv.setViewName("bankbook/list");
