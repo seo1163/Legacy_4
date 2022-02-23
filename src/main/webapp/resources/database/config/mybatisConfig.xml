@@ -5,12 +5,11 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.iu.s1.bankbook.BankBookDTO"
-			alias="BankBookDTO" />
+		<typeAlias type="com.iu.s1.bankbook.BankBookDTO" alias="BankBookDTO" />		
+		<typeAlias type="com.iu.s1.notice.NoticeDTO" alias="NoticeDTO" />
+		<typeAlias type="com.iu.s1.member.MemberDTO" alias="MemberDTO" />
 		<typeAlias type="java.lang.Long" alias="Long" />
-		<typeAlias type="com.iu.s1.notice.NoticeDTO"
-			alias="NoticeDTO" />
-		<typeAlias type="com.iu.s1.member.MemberDTO"
-			alias="MemberDTO" />
 	</typeAliases>
+
+
 </configuration>
