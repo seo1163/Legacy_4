@@ -29,13 +29,23 @@ public class BankBookDAOTest extends JunitTest {
 	// Insert
 	@Test
 	public void addTest() throws Exception {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 200; i++) {
 			BankBookDTO bankBookDTO = new BankBookDTO();
 			bankBookDTO.setBookName("bookName" + i);
 			bankBookDTO.setBookContents("Contents" + i);
-			bankBookDTO.setBookRate(1.12 + i);
+			
+			double rate = Math.random();//0.0~1.0 미만
+			rate=rate*1000;
+			int r=(int)rate;
+			rate=r/100.0;
+			
+			bankBookDTO.setBookRate(rate);//총3자리 소수점 2자리
 			bankBookDTO.setBookSale(1);
 			int result = bankBookDAO.add(bankBookDTO);
+		
+			if(i%10==0) {
+				Thread.sleep(1000);//1초동안 멈추세요
+			}
 		}
 		System.out.println("Insert Finish");
 		// assertEquals(1, result);

@@ -6,9 +6,7 @@
  <mapper namespace="com.iu.s1.bankbook.BankBookDAO">
  
  	<update id="update" parameterType="BankBookDTO">
- 		update bankbook 
- 			set 
- 				bookName=#{bookName}, bookContents=#{bookContents}
+ 		UPDATE BANKBOOK SET BOOKNAME=#{bookName}, bookContents=#{bookContents}
  				, bookSale=#{bookSale}, bookRate=#{bookRate}
  			where bookNumber=#{bookNumber}	
  	</update>
@@ -22,12 +20,12 @@
  	</select>
  	
  	<insert id="add" parameterType="BankBookDTO">
- 		insert into bankbook (booknumber, bookname, bookcontents, bookrate, booksale)
-		values (bankbook_seq.nextval, #{bookName}, #{bookContents}, #{bookRate}, #{bookSale})
+ 		INSERT INTO BANKBOOK (BOOKNUMBER, BOOKNAME, BOOKCONTENTS, BOOKRATE, BOOKSALE)
+		VALUES (bankbook_seq.nextval, #{bookName}, #{bookContents}, #{bookRate}, #{bookSale})
  	</insert>
  	
  	<delete id="delete" parameterType="BankBookDTO">
- 		delete bankbook where booknumber=#{bookNumber}
+ 		DELETE BANKBOOK WHERE BOOKNUMBER=#{bookNumber}
  	</delete>
  	
  </mapper>  
