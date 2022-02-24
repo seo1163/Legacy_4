@@ -71,7 +71,7 @@ public class Pager {
 		//	2			11			20
 		
 		this.startNum=(curBlock-1)*perBlock+1;
-		this.lastNum=totalPage;
+		this.lastNum=curBlock*perBlock;
 	
 	
 	//8. 이전, 다음 블럭 유무
@@ -84,7 +84,7 @@ public class Pager {
 		
 	this.next=false;
 	if(totalBlock > curBlock) {
-		this.next=false;
+		this.next=true;
 	}
 	
 	//9.현재 블럭이 마지막 블럭번호와 같다면

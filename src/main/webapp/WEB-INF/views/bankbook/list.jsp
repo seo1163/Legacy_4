@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
-
+	<c:import url="../template/header.jsp"></c:import>
 	<h1>BankBook List Page</h1>
 	
 	<!-- bookName, bookRate, bookSale -->
@@ -29,9 +30,9 @@
 	
 	<div>
 		<c:if test="${pager.pre}">
-			<a href="./list?pager=${pager.startNum}">PREVIEW</a>
+			<a href="./list?page=${pager.startNum-1}">PREVIEW</a>
 		</c:if>
-	
+		
 		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 			
 		<a href="./list?page=${i}">${i}</a>

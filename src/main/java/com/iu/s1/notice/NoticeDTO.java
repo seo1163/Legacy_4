@@ -1,20 +1,22 @@
 package com.iu.s1.notice;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class NoticeDTO {
 	
-	private Long noticenum;
+	private Long num;
 	private String title;
 	private String writer;
 	private String contents;
 	private Date regDate;
 	private Long hit;
-	public Long getNoticenum() {
-		return noticenum;
+	
+	
+	public Long getNum() {
+		return num;
 	}
-	public void setNoticenum(Long noticenum) {
-		this.noticenum = noticenum;
+	public void setNum(Long num) {
+		this.num = num;
 	}
 	public String getTitle() {
 		return title;
