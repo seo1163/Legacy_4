@@ -6,38 +6,63 @@
 <mapper namespace="com.iu.s1.bankbook.BankBookDAO">
 
 	<update id="update" parameterType="BankBookDTO">
-		UPDATE BANKBOOK SET BOOKNAME=#{bookName}, bookContents=#{bookContents}
-		, bookSale=#{bookSale}, bookRate=#{bookRate}
-		where bookNumber=#{bookNumber}
+		UPDATE BANKBOOK SET
+		BOOKNAME=#{bookName}, bookContents=#{bookContents}
+		,
+		bookSale=#{bookSale}, bookRate=#{bookRate}
+		where
+		bookNumber=#{bookNumber}
 	</update>
 
 	<select id="detail" parameterType="BankBookDTO"
 		resultType="BankBookDTO">
 		SELECT * FROM BANKBOOK WHERE BOOKNUMBER=#{bookNumber}
 	</select>
-	
-	<select id="total" resultType="LONG">
+
+	<select id="total" resultType="LONG" parameterType="Pager">
 		SELECT COUNT (BOOKNUMBER) FROM BANKBOOK
+		WHERE BOOKNUMBER>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				BOOKNAME
+			</when>
+			<otherwise> BOOKCONTENTS
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
 	</select>
 
 	<select id="list" parameterType="Pager" resultType="BankBookDTO">
-	SELECT * FROM
-	(SELECT rownum R, B.* FROM
-	(SELECT * FROM BANKBOOK WHERE BOOKNUMBER>0 ORDER BY BOOKNUMBER DESC) B)
-	WHERE R between #{startRow} and #{lastRow}
-		
+		SELECT * FROM
+		(SELECT rownum R, B.* FROM
+		(SELECT * FROM BANKBOOK WHERE BOOKNUMBER>0 AND
+		<choose>
+			<when test="kind=='col1'">
+				BOOKNAME
+			</when>
+			<otherwise> BOOKCONTENTS
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%' ORDER BY BOOKNUMBER DESC) B)
+		WHERE R between #{startRow} and #{lastRow}
+
 	</select>
 
 
+
 	<insert id="add" parameterType="BankBookDTO">
-		INSERT INTO BANKBOOK (BOOKNUMBER, BOOKNAME, BOOKCONTENTS, BOOKRATE,
+		INSERT INTO BANKBOOK (BOOKNUMBER,
+		BOOKNAME, BOOKCONTENTS, BOOKRATE,
 		BOOKSALE)
-		VALUES (bankbook_seq.nextval, #{bookName}, #{bookContents},
-		#{bookRate}, #{bookSale})
+		VALUES
+		(bankbook_seq.nextval, #{bookName}, #{bookContents},
+		#{bookRate},
+		#{bookSale})
 	</insert>
 
 	<delete id="delete" parameterType="BankBookDTO">
-		DELETE BANKBOOK WHERE BOOKNUMBER=#{bookNumber}
+		DELETE BANKBOOK WHERE
+		BOOKNUMBER=#{bookNumber}
 	</delete>
 
 </mapper>  

@@ -15,7 +15,10 @@
 			Contents <input type="text" name="contents" value="${dto.contents}">
 			Writer <input type="text" name="writer" value="${dto.writer}">
 			
+		
+			
 			<input type="submit" value="ADD">
+			<button type="button">ADD</button>
 		</form>
 </body>
 </html>

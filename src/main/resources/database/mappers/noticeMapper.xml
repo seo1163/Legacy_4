@@ -7,7 +7,7 @@
  
  	<update id="update" parameterType="NoticeDTO">
  		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents}, WRITER=#{writer}
-		WHERE BOOKNUMBER=#{num};
+		WHERE NUM=#{num}
  	</update>
  	
  	<delete id="delete" parameterType="NoticeDTO">
