@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.iu.s1.JunitTest;
 import com.iu.s1.util.Pager;
 
-public class NoticeDATOTest extends JunitTest {
+public class NoticeDAOTest extends JunitTest {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
