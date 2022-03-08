@@ -7,9 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Notice Add Page</h1>
+	<h1>${board} Add Page</h1>
 	
-	<form action="./add" method="post">
+	<form action="./reply" method="post">
+		<input type="hidden" value="${dto.num}" name="num">
 		Title<input type="text" name="title">
 		Writer<input type="text" name="writer">
 		Contents<textarea name="contents" rows="" cols=""></textarea>

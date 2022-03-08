@@ -7,13 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h1>Notice Update Page</h1>
+		<h1>${board} Update Page</h1>
 		
 		<form action="./update" method="POST">
 			<input type="hidden" readonly="readonly" name="num" value="${dto.num}">
-			Title <input type="text" name="title" value="${dto.title}">
-			Contents <input type="text" name="contents" value="${dto.contents}">
-			Writer <input type="text" name="writer" value="${dto.writer}">
+			<input type="text" name="title" value="${dto.title}">
+			<input type="text" name="writer" value="${dto.writer}">
+			<textarea rows="" cols="" name="contents">${dto.contents}</textarea>			
 			
 		
 			
