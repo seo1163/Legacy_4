@@ -54,19 +54,28 @@ public class MemberController {
 			response.addCookie(cookie);
 		}else {
 			Cookie cookie = new Cookie("remember", "");
-			cookie.setMaxAge(0);
+		cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
+			
+	memberDTO = memberService.login(memberDTO);
 		
-		memberDTO = memberService.login(memberDTO);
-		
-		String path="redirect:./login";
-		
-		if(memberDTO != null) {
+//		String path="redirect:./login";
+//		
+//		if(memberDTO != null) {
+//			session.setAttribute("member", memberDTO);
+//			path = "redirect:../";
+//		}
+//		
+		String messgae = "Login Fail";
+		String p ="./login";
+		if(memberDTO !=null) {
 			session.setAttribute("member", memberDTO);
-			path = "redirect:../";
+			messgae="Login Success";
 		}
-		
+		model.addAttribute("message",messgae);
+		model.addAttribute("path",p);
+		String path="common/result";
 		return path;
 		
 	}
@@ -88,5 +97,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "join", method=RequestMethod.GET)
 	public void join()throws Exception{}
+	
+	@RequestMapping(value="joinCheck", method = RequestMethod.GET)
+	public void joinCheck() throws Exception{}
 
 }
