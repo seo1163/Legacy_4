@@ -37,7 +37,7 @@ pw2.addEventListener('blur', function(){
     pwResult2.innerHTML=message;
 });
 
-//---------------pw-------------------------
+//---------------pw 길이검증-------------------------
 pw.addEventListener('blur',function(){
     if(pw.value.length<8 || pw.length>12){
         pwResult.innerHTML='PW 글자수가 맞지 않습니다.'
@@ -91,7 +91,7 @@ btn.addEventListener("click", function(){
         return;
     }
 
-    frm.onsubmit();
+    frm.submit();
 
 });
 

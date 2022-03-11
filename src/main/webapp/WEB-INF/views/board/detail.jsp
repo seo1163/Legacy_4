@@ -18,6 +18,12 @@
 	<h3>Writer : ${dto.writer}</h3>
 	<h3>Contents : ${dto.contents}</h3>
 	
+	<div>
+		<c:forEach items="${dto.fileDTOs}" var="f">
+			<a href="../resources/upload/${board}/${f.fileName}">${f.oriName}</a>
+		</c:forEach>
+	</div>
+	
 	<a href="./list">List</a>
 	<a href="./update?num=${dto.num}">Update</a>
 	<a href="./delete?num=${dto.num}">Delete</a>

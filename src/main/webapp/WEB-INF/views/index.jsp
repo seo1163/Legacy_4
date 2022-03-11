@@ -11,6 +11,9 @@
 </head>
 <body>
 	<c:import url="./template/header.jsp"></c:import>
+	<div>
+		<img alt="" src="./resources/images/KakaoTalk_20220118_180408662.jpg">
+	</div>
 	
 	<h1>Index Page</h1>
 	<h3>${member.name} 님 환영합니다 
@@ -33,5 +36,7 @@
 		</c:if>
 	
 	</div>
+	
+	<img alt="" src="./resources/upload/member/3231efc4-47c8-42cd-aee2-b185c44ffbf0_KakaoTalk_20220308_154117058.jpg">
 </body>
 </html>

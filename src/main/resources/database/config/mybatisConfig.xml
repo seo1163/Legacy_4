@@ -12,5 +12,10 @@
    		<typeAlias type="com.iu.s1.util.Pager" alias="Pager"/>
    		<typeAlias type="com.iu.s1.board.BoardDTO" alias="BoardDTO"/>
    		<typeAlias type="com.iu.s1.board.qna.QnaDTO" alias="QnaDTO"/>
+   		<typeAlias type="com.iu.s1.member.MemberFileDTO" alias="MemberFileDTO"/>
+   		<typeAlias type="com.iu.s1.board.BoardFileDTO" alias="BoardFileDTO"/>
+   		<typeAlias type="com.iu.s1.board.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
+   		<typeAlias type="com.iu.s1.board.qna.QnaFileDTO" alias="QnaFileDTO"/>
+   		<typeAlias type="java.util.List" alias="List"/>
     	</typeAliases>
   </configuration>

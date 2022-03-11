@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 //전역변수
 //var
 const pw = document.getElementById("pw");

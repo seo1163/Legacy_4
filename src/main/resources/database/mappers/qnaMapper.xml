@@ -5,6 +5,15 @@
 
 <mapper namespace="com.iu.s1.board.qna.QnaDAO">
 
+	<select id="seqNum" resultType="Long">
+		SELECT QNA_SEQ.NEXTVAL FROM DUAL
+	</select>
+
+	<insert id="addFile" parameterType="BoardFileDTO">
+		INSERT INTO QNAFILE(FILENUM, NUM, FILENAME, ORINAME)
+		VALUES(FILE_SEQ.NEXTVAL,${num},${fileName}, ${oriName})
+	</insert>
+
 	<insert id="reply" parameterType="QnaDTO">
 		INSERT INTO QNA(NUM, TITLE, WRITER, CONTENTS, REGDATE, HIT, REF, STEP,
 		DEPTH)
@@ -34,9 +43,33 @@
 		VALUES (QNA_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 0, QNA_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	<select id="detail" parameterType="QnaDTO" resultType="QnaDTO">
-		SELECT*FROM QNA WHERE NUM=#{num}
+	<select id="detail" parameterType="QnaDTO" resultMap="detailResult" resultType="QnaDTO">
+	SELECT Q.*,QF.*
+	FROM
+	QNA Q
+	LEFT JOIN
+	QNAFILE QF
+	ON Q.NUM = QF.NUM
+	WHERE Q.NUM=${num}
 	</select>
+	
+	<resultMap type="QnaDTO" id="detailResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="writer" property="writer"/>
+		<result column="regDate" property="regDate"/>
+		<result column="hit" property="hit"/>
+		<result column="ref" property="ref"/>
+		<result column="step" property="step"/>
+		<result column="depth" property="depth"/> 
+		<collection property="fileDTOs" javaType="List" ofType="QnaFileDTO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</collection>
+		
+	</resultMap>
 
 	<select id="list" parameterType="Pager" resultType="QnaDTO">
  		SELECT * FROM

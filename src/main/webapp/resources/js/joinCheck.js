@@ -1,6 +1,3 @@
-/**
- * 
- */
 const checkAll = document.getElementById('checkAll');
 const check = document.getElementsByClassName('check');
 const btn = document.getElementById("btn");
@@ -16,14 +13,14 @@ checkAll.addEventListener('click', function(){
 
 for(ch of check){
     ch.addEventListener("click", function(){
-        let last=true;
+        let final=true;
         for(c of check){
             if(!c.checked){
-                last = false;
+                final = false;
             }
         }
 
-        checkAll.chcked=last;
+        checkAll.chcked=final;
         
 
     });
