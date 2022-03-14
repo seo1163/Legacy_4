@@ -18,7 +18,7 @@ public class QnaDAO implements BoardDAO{
 	
 	private final String NAMESPACE="com.iu.s1.board.qna.QnaDAO.";
 	
-	
+	@Override
 	public int addFile(BoardFileDTO boardFileDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 	}

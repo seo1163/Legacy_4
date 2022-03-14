@@ -16,6 +16,7 @@ public class NoticeDAO implements BoardDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s1.board.notice.NoticeDAO.";
+	
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -47,6 +48,7 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.selectOne(NAMESPACE+"total", pager);
 	}
 	
+	@Override
 	public int addFile(BoardFileDTO boardFileDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 		

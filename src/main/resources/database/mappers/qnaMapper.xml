@@ -5,9 +5,6 @@
 
 <mapper namespace="com.iu.s1.board.qna.QnaDAO">
 
-	<select id="seqNum" resultType="Long">
-		SELECT QNA_SEQ.NEXTVAL FROM DUAL
-	</select>
 
 	<insert id="addFile" parameterType="BoardFileDTO">
 		INSERT INTO QNAFILE(FILENUM, NUM, FILENAME, ORINAME)

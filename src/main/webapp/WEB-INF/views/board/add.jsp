@@ -9,10 +9,10 @@
 <body>
 	<h1>${board} Add Page</h1>
 	
-	<form action="./add" method="post" enctyp="multipart/form-data">
+	<form action="./add" method="post" enctype="multipart/form-data">
 		Title<input type="text" name="title" id="title">
 		Writer<input type="text" name="writer" id="writer">
-		Contents<textarea name="contents" rows="" cols="" id="contents"></textarea>
+		Contents<textarea name="contents" rows="" cols="" ></textarea>
 		
 		<div>
 			<input type="file" name="files">
@@ -23,6 +23,6 @@
 	
 	</form>
 
-	<script src="../resources/js/notijoin.js"></script>
+	
 </body>
 </html>

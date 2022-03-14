@@ -41,7 +41,7 @@
 		LEFT JOIN
 		NOTICEFILE NF
 		ON N.NUM = NF.NUM
-		WHERE N.NUM=#{num}
+		WHERE N.NUM=${num}
 	</select>
 	
 	<resultMap type="NoticeDTO" id="detailResult">

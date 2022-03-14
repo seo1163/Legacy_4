@@ -41,7 +41,7 @@ public class NoticeService implements BoardService {
 		// boardDTO.setNum(num);
 		int result = noticeDAO.add(boardDTO);
 		// 1. HDD에 저장
-		for (int i = 0; i < files.length; i++) {
+		for (int i=0; i < files.length; i++) {
 			if(files[i].isEmpty()) {
 				//files[i].getSize()==0
 				continue;
