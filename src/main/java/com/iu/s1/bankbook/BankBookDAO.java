@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.s1.file.FileDTO;
 import com.iu.s1.util.Pager;
 
 @Repository
@@ -16,7 +17,15 @@ public class BankBookDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s1.bankbook.BankBookDAO.";
+	
+	public BankBookFileDTO detailFile(BankBookFileDTO bankBookFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFile", bankBookFileDTO);
+	}
 
+	public int addFile(BankBookFileDTO bankBookFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addFile", bankBookFileDTO);
+	}
+	
 	//update
 	public int update(BankBookDTO bankBookDTO)throws Exception {
 		return sqlSession.update(NAMESPACE+"update", bankBookDTO);

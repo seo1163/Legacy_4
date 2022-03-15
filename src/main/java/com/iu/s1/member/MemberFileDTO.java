@@ -1,35 +1,23 @@
 package com.iu.s1.member;
 
-public class MemberFileDTO {
-	private Long fileNum;
-	private String id;
-	private String fileName;
-	private String oriName;
+import com.iu.s1.file.FileDTO;
+
+public class MemberFileDTO extends FileDTO{
 	
-	public Long getFileNum() {
-		return fileNum;
-	}
-	public void setFileNum(Long fileNum) {
-		this.fileNum = fileNum;
-	}
+	private String id;
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getFileName() {
-		return fileName;
-	}
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-	public String getOriName() {
-		return oriName;
-	}
-	public void setOriName(String oriName) {
-		this.oriName = oriName;
-	}
+	
+	
+	
+	
+
 
 	
 }

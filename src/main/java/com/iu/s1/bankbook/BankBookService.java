@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iu.s1.util.FileManager;
 import com.iu.s1.util.Pager;
 
 @Service
@@ -16,6 +17,12 @@ public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
+	@Autowired
+	private FileManager fileManager;
+	
+	public BankBookFileDTO detailFile(BankBookFileDTO bankBookFileDTO) throws Exception{
+		return bankBookDAO.detailFile(bankBookFileDTO);
+	}
 	//Update
 	public int update(BankBookDTO bankBookDTO)throws Exception{
 		return bankBookDAO.update(bankBookDTO);

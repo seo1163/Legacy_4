@@ -11,6 +11,10 @@ public class MemberDAO {
 	
 	private final String NAMESPACE="com.iu.s1.member.MemberDAO.";
 	
+	public MemberFileDTO detailFile(MemberFileDTO memberFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFile", memberFileDTO);
+	}
+	
 	public MemberDTO mypage(MemberDTO memberDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"mypage", memberDTO);
 	}

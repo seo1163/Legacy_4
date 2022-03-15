@@ -18,6 +18,9 @@ public class MemberService {
 	private FileManager fileManager;
 	
 	
+	public MemberFileDTO detailFile(MemberFileDTO memberFileDTO) throws Exception{
+		return memberDAO.detailFile(memberFileDTO);
+	}
 	
 	public MemberDTO mypage(MemberDTO memberDTO)throws Exception{
 		return memberDAO.mypage(memberDTO);
@@ -39,6 +42,7 @@ public class MemberService {
 		memberFileDTO.setFileName(fileName);
 		memberFileDTO.setOriName(photo.getOriginalFilename());
 		memberDAO.addFile(memberFileDTO);
+		result = memberDAO.addFile(memberFileDTO);
 		return result;//memberDAO.join(memberDTO);
 	}
 

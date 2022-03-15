@@ -5,10 +5,20 @@
 
 <mapper namespace="com.iu.s1.board.notice.NoticeDAO">
 
+	<select id="listFile" parameterType="BoardDTO" resultType="NoticeFileDTO">
+		SELECT * FROM NOTICEFILE
+		WHERE NUM = #{num}
+	</select>
+
+	<select id="detailFile" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+ 		SELECT * FROM NOTICEFILE
+ 		WHERE FILENUM=#{fileNum}
+ 	</select>
+
 	<insert id="addFile" parameterType="BoardFileDTO">
-		INSERT INTO NOTICEFILE(FILENUM, NUM, FILENAME, ORINAME)
-		VALUES (FILE_SEQ.NEXTVAL,${num},${fileName},${oriName})
-	</insert>
+ 		INSERT INTO NOTICEFILE (FILENUM, NUM, FILENAME, ORINAME)
+ 		VALUES (FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+ 	</insert>
 
 	<select id="seqNum" resultType="Long">
 		<!-- SELECT MAX(NUM) FROM NOTICE -->

@@ -20,6 +20,10 @@ public class BankBookController {
 	@Autowired
 	private BankBookService bankBookService;
 	
+	@ModelAttribute("file")
+	public String board() {
+		return "bankbook";
+	}
 
 	//update
 	@RequestMapping(value = "update", method=RequestMethod.POST)

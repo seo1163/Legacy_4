@@ -17,6 +17,10 @@ public class NoticeDAO implements BoardDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.iu.s1.board.notice.NoticeDAO.";
 	
+	public List<NoticeFileDTO> listFile(BoardDTO boardDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
+	}
+	
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -53,5 +57,11 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 		
 	}
+	
+	
+	public NoticeFileDTO detailFile(NoticeFileDTO noticeFileDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFile", noticeFileDTO);
+	}
+	
 	
 }

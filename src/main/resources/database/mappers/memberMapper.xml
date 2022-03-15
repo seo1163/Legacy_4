@@ -5,14 +5,19 @@
     
  <mapper namespace="com.iu.s1.member.MemberDAO">
  
+ 	<select id="detailFile" parameterType="MemberFileDTO" resultType="MemberFileDTO">
+ 		SELECT*FROM MEMBERFILE
+ 		WHERE FILENUM=#{fileNum}
+ 	</select>
+ 
  	<select id="mypage" parameterType="MemberDTO" resultMap="mypageResult">
  		SELECT ID, M.NAME, M.EMAIL, M.PHONE, MF.FILENUM, MF.FILENAME, MF.ORINAME
  		FROM
  			MEMBER M
- 				OUTER LEFT JOIN
+ 				LEFT JOIN
  			MEMBERFILE MF
  			USING(ID)
- 		WHERE ID = ${id}
+ 		WHERE ID = #{id}
  	</select>
  	
  	<resultMap type="MemberDTO" id="mypageResult">
@@ -23,7 +28,7 @@
  		<association property="memberFileDTO" javaType="MemberFileDTO">
  			<id column="fileNum" property="fileNum"/>
  			<result column="fileName" property="fileName"/>
- 			<result column="oriName" property=""/> 
+ 			<result column="oriName" property="oriName"/> 
  		</association> <!-- 1대 1일 때는 association -->
  	</resultMap>
  	

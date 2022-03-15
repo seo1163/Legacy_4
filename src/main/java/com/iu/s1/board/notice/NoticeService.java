@@ -18,6 +18,11 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	@Autowired
 	private FileManager fileManager;
+	
+	
+	public NoticeFileDTO detailFile(NoticeFileDTO noticeFileDTO) throws Exception{
+		return noticeDAO.detailFile(noticeFileDTO);
+	}
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
@@ -68,7 +73,21 @@ public class NoticeService implements BoardService {
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeDAO.delete(boardDTO);
+		
+		List<NoticeFileDTO> ar = noticeDAO.listFile(boardDTO);
+		int result = noticeDAO.delete(boardDTO);
+		
+		if(result >0) {
+//			for(int i=0; i<ar.size();i++) {
+//				ar.get(i);
+//			}
+			//for(Collection에서 꺼낼타입명 변수명: Collection의 변수명){}
+			for(NoticeFileDTO dto:ar){
+			boolean check = fileManager.remove("resources/upload/notice/", dto.getFileName());
+			
+			}
+		}
+		return result;
 	}
 
 }

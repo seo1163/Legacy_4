@@ -27,6 +27,17 @@ public class QnaController {
 	public String board() {
 		return "qna";
 	}
+	
+	@RequestMapping(value = "fileDown", method=RequestMethod.GET)
+	public ModelAndView fileDown(QnaFileDTO qnaFileDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		qnaFileDTO = qnaService.detailFile(qnaFileDTO);
+		
+		mv.setViewName("fileDown");
+		mv.addObject("file", qnaFileDTO);
+		
+		return mv;
+	}
 	//list 
 	@RequestMapping(value="list", method = RequestMethod.GET)
 	public String list(Pager pager, Model model) throws Exception{

@@ -10,13 +10,14 @@ public class QnaDTO extends BoardDTO {
 	private Long step;
 	private Long depth;
 	
-	private List<QnaFileDTO> fileDTOS;
+	private List<QnaFileDTO> fileDTOs;
 	
-	public List<QnaFileDTO> getFileDTOS() {
-		return fileDTOS;
+
+	public List<QnaFileDTO> getFileDTOs() {
+		return fileDTOs;
 	}
-	public void setFileDTOS(List<QnaFileDTO> fileDTOS) {
-		this.fileDTOS = fileDTOS;
+	public void setFileDTOs(List<QnaFileDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
 	}
 	public Long getRef() {
 		return ref;

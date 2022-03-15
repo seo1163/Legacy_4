@@ -5,16 +5,24 @@
 
 <mapper namespace="com.iu.s1.board.qna.QnaDAO">
 
+	<select id="detailFile" parameterType="QnaFileDTO"
+		resultType="QnaFileDTO">
+		SELECT * FROM QNAFILE
+		WHERE FILENUM=#{fileNum}
+	</select>
 
 	<insert id="addFile" parameterType="BoardFileDTO">
-		INSERT INTO QNAFILE(FILENUM, NUM, FILENAME, ORINAME)
-		VALUES(FILE_SEQ.NEXTVAL,${num},${fileName}, ${oriName})
+		INSERT INTO QNAFILE (FILENUM, NUM, FILENAME, ORINAME)
+		VALUES (FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
 	</insert>
-
+	
 	<insert id="reply" parameterType="QnaDTO">
-		INSERT INTO QNA(NUM, TITLE, WRITER, CONTENTS, REGDATE, HIT, REF, STEP,
+		INSERT INTO QNA(NUM, TITLE,
+		WRITER, CONTENTS, REGDATE, HIT, REF, STEP,
 		DEPTH)
-		VALUES (QNA_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 0, #{ref}, #{step}, #{depth})
+		VALUES
+		(QNA_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 0,
+		#{ref}, #{step}, #{depth})
 	</insert>
 
 	<update id="stepUpdate" parameterType="QnaDTO">
@@ -24,7 +32,8 @@
 
 	<update id="update" parameterType="QnaDTO">
 		UPDATE QNA SET
-		TITLE=#{title}, CONTENTS=#{contents},
+		TITLE=#{title},
+		CONTENTS=#{contents},
 		WRITER=#{writer}
 		WHERE
 		NUM=#{num}
@@ -35,58 +44,66 @@
 	</delete>
 
 	<insert id="add" parameterType="QnaDTO">
-		INSERT INTO QNA(NUM, TITLE, WRITER, CONTENTS, REGDATE, HIT, REF, STEP,
+		INSERT INTO QNA(NUM, TITLE,
+		WRITER, CONTENTS, REGDATE, HIT, REF, STEP,
 		DEPTH)
-		VALUES (QNA_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 0, QNA_SEQ.CURRVAL, 0, 0)
+		VALUES
+		(QNA_SEQ.NEXTVAL, #{title}, #{writer}, #{contents}, SYSDATE, 0,
+		QNA_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	<select id="detail" parameterType="QnaDTO" resultMap="detailResult" resultType="QnaDTO">
-	SELECT Q.*,QF.*
-	FROM
-	QNA Q
-	LEFT JOIN
-	QNAFILE QF
-	ON Q.NUM = QF.NUM
-	WHERE Q.NUM=${num}
+	<select id="detail" parameterType="QnaDTO"
+		resultMap="detailResult" resultType="QnaDTO">
+		SELECT Q.*,QF.*
+		FROM
+		QNA Q
+		LEFT JOIN
+		QNAFILE QF
+		ON Q.NUM = QF.NUM
+		WHERE Q.NUM=${num}
 	</select>
-	
+
 	<resultMap type="QnaDTO" id="detailResult">
-		<id column="num" property="num"/>
-		<result column="title" property="title"/>
-		<result column="contents" property="contents"/>
-		<result column="writer" property="writer"/>
-		<result column="regDate" property="regDate"/>
-		<result column="hit" property="hit"/>
-		<result column="ref" property="ref"/>
-		<result column="step" property="step"/>
-		<result column="depth" property="depth"/> 
-		<collection property="fileDTOs" javaType="List" ofType="QnaFileDTO">
-			<id column="fileNum" property="fileNum"/>
-			<result column="fileName" property="fileName"/>
-			<result column="oriName" property="oriName"/>
+		<id column="num" property="num" />
+		<result column="title" property="title" />
+		<result column="contents" property="contents" />
+		<result column="writer" property="writer" />
+		<result column="regDate" property="regDate" />
+		<result column="hit" property="hit" />
+		<result column="ref" property="ref" />
+		<result column="step" property="step" />
+		<result column="depth" property="depth" />
+		<collection property="fileDTOs" javaType="List"
+			ofType="QnaFileDTO">
+			<id column="fileNum" property="fileNum" />
+			<result column="fileName" property="fileName" />
+			<result column="oriName" property="oriName" />
 		</collection>
-		
+
 	</resultMap>
 
 	<select id="list" parameterType="Pager" resultType="QnaDTO">
- 		SELECT * FROM
+		SELECT * FROM
 		(SELECT rownum R, B.* FROM
-		(SELECT * FROM QNA WHERE NUM>0 AND
+		(SELECT * FROM QNA WHERE NUM>0
+		AND
 		<choose>
 			<when test="kind=='col1'">
 				TITLE
 			</when>
 			<when test="kind=='col2'">
-			CONTENTS</when>
+				CONTENTS
+			</when>
 			<otherwise> WRITER
 			</otherwise>
 		</choose>
 		LIKE '%'||#{search}||'%' ORDER BY REF DESC, STEP ASC) B)
-		WHERE R between #{startRow} and #{lastRow}
- 	</select>
-	
+		WHERE R
+		between #{startRow} and #{lastRow}
+	</select>
 
-	<select id="total" resultType="LONG" >
+
+	<select id="total" resultType="LONG">
 		SELECT COUNT (NUM) FROM QNA
 		WHERE NUM>0 AND
 		<choose>
@@ -94,12 +111,12 @@
 				TITLE
 			</when>
 			<when test="kind=='col2'">CONTENTS</when>
-			<otherwise> 
-			WRITER
+			<otherwise>
+				WRITER
 			</otherwise>
 		</choose>
 		LIKE '%'||#{search}||'%'
-	
+
 
 	</select>
 

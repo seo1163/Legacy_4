@@ -17,6 +17,10 @@ public class QnaService implements BoardService {
 	private QnaDAO qnaDAO;
 	@Autowired
 	private FileManager fileManager;
+	
+	public QnaFileDTO detailFile(QnaFileDTO qnaFileDTO) throws Exception{
+		return qnaDAO.detailFile(qnaFileDTO);
+	}
 
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
