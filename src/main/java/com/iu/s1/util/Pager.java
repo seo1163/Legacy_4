@@ -46,7 +46,7 @@ public class Pager {
 		//4. 전체 Bloock의 갯수 구하기
 		Long totalBlock=totalPage/perBlock;
 		if(totalPage%perBlock !=0) {
-			totalPage++;
+			totalBlock++;
 		}
 		
 		//5. page 번호로 현재 몇번째 Block인지 계산

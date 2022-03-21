@@ -9,6 +9,7 @@
 <c:import url="../template/header_css.jsp"></c:import>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
 	<h1>Bankbook Detail Page</h1>
 	<h3>Name : ${dto.bookName}</h3>
 	<h3>Contents : ${dto.bookContents}</h3>
